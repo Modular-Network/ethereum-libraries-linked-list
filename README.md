@@ -16,14 +16,16 @@ It has been updated to add additional functionality and be more compatible with 
 
 - [Library Address](#library-address)
 - [License and Warranty](#license-and-warranty)
-- [How to install](#how-to-install)
-  - [Truffle Installation](#truffle-installation)
-    - [Manual Install](#manual-install)
-    - [Testing the library in truffle](#testing-the-library-in-truffle)
+- [Installation and Usage](#installation-and-usage)
+  - [How to install](#how-to-install)
+    - [How to link](#how-to-link)
+  - [Testing](#testing)
   - [solc Installation](#solc-installation)
     - [With standard JSON input](#with-standard-json-input)
+    - [solc without standard JSON input](#solc-without-standard-json-input)
     - [solc documentation](#solc-documentation)
   - [solc-js Installation](#solc-js-installation)
+    - [Solc-js Installation via Linking](#solc-js-installation-via-linking)
     - [Solc-js documentation](#solc-js-documentation)
 - [Overview](#overview)
   - [Basic Usage](#basic-usage)
@@ -67,8 +69,8 @@ It has been updated to add additional functionality and be more compatible with 
 
 ## Library Address   
 
-**Main Ethereum Network**:
-**Rinkeby Test Network**:
+**Main Ethereum Network**: 0x95FC85B52cC88AC6926bC55d64B88b2AcF18C59B   
+**Rinkeby Test Network**:   
 
 ## License and Warranty   
 
@@ -100,6 +102,8 @@ module.exports = function(deployer) {
 };
 ```
 
+**Note**: If you have not created a second deployment .js file in the `migrations/` directory, this needs to be done first. You cannot use the 1_initial_migration.js file for your migrations.
+
 **Note**: The `.link()` function should be called *before* you `.deploy(YourOtherContract)`. Also, be sure to include the `{overwrite: false}` when writing the deployer i.e. `.deploy(Array256Lib, {overwrite: false})`. This prevents deploying the library onto the main network or Rinkeby test network at your cost and uses the library already on the blockchain. The function should still be called however because it allows you to use it in your development environment. *See below*
 
 ### Testing
@@ -127,7 +131,7 @@ For direction and instructions on how the Solidity command line compiler works [
       ...
       ...
     },
-    "StringUtilsLib.sol": {
+    "LinkedListLib.sol": {
       "content": "[Contents of LinkedListLib.sol]"
     }
   },
@@ -136,7 +140,7 @@ For direction and instructions on how the Solidity command line compiler works [
     ...
     "libraries": {
       "YourContract.sol": {
-        "LinkedListLib": "0xD620Ce17fC516671F0fA84Ac88e39dCBb0a1615A"
+        "LinkedListLib": "0x95FC85B52cC88AC6926bC55d64B88b2AcF18C59B"
       }
     }
   }
@@ -147,11 +151,11 @@ For direction and instructions on how the Solidity command line compiler works [
 
 When creating unlinked binary, the compiler currently leaves special substrings in the compiled bytecode in the form of '__LibraryName______' which leaves a 20 byte space for the library's address. In order to include the deployed library in your bytecode add the following flag to your command:
 
-`--libraries "LinkedListLib:0xD620Ce17fC516671F0fA84Ac88e39dCBb0a1615A"`
+`--libraries "LinkedListLib:0x95FC85B52cC88AC6926bC55d64B88b2AcF18C59B"`
 
 Additionally, if you have multiple libraries, you can create a file with one library string per line and include this library as follows:
 
-`"LinkedListLib:0xD620Ce17fC516671F0fA84Ac88e39dCBb0a1615A"`
+`"LinkedListLib:0x95FC85B52cC88AC6926bC55d64B88b2AcF18C59B"`
 
 then add the following flag to your command:
 
@@ -159,7 +163,7 @@ then add the following flag to your command:
 
 Finally, if you have an unlinked binary already stored with the '__LibraryName______' placeholder, you can run the compiler with the --link flag and also include the following flag:
 
-`--libraries "LinkedListLib:0xD620Ce17fC516671F0fA84Ac88e39dCBb0a1615A"`
+`--libraries "LinkedListLib:0x95FC85B52cC88AC6926bC55d64B88b2AcF18C59B"`
 
 #### solc documentation
 
@@ -178,7 +182,7 @@ var solc = require('solc');
 var fs = require('fs');
 
 var file = fs.readFileSync('/path/to/YourContract.sol','utf8');
-var StringUtilsLib = fs.readFileSync('./path/to/LinkedListLib.sol','utf8');
+var LinkedListLib = fs.readFileSync('./path/to/LinkedListLib.sol','utf8');
 
 var input = {
   "language": "Solidity",
