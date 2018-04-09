@@ -1,0 +1,28 @@
+{
+  "name": "ethereum-libraries-linked-list",
+  "version": "1.1.0",
+  "description": "A linked list library for using linked list data structures in your project.",
+  "keywords": [
+    "ethereum",
+    "linked",
+    "list",
+    "modular"
+  ],
+  "homepage": "https://github.com/Modular-Network/ethereum-libraries",
+  "bugs": "https://github.com/Modular-Network/ethereum-libraries/issues",
+  "license": "MIT",
+  "author": {
+    "name": "Modular Inc",
+    "email": "contact@modular.network",
+    "url": "https://modular.network"
+  },
+  "scripts": {
+    "test": "bash run_test.sh",
+    "test:coverage": "SOLIDITY_COVERAGE=true bash run_test.sh"
+  },
+  "devDependencies": {
+    "ganache-cli": "6.1.0",
+    "solidity-coverage": "0.4.14",
+    "truffle": "4.1.5"
+  }
+}
