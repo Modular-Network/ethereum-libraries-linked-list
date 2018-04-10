@@ -9,7 +9,7 @@ pragma solidity 0.4.21;
  * It has been updated to add additional functionality and be more compatible with solidity 0.4.18
  * coding patterns.
  *
- * version 1.1.0
+ * version 1.1.1
  * Copyright (c) 2017 Modular Inc.
  * The MIT License (MIT)
  * https://github.com/Modular-network/ethereum-libraries/blob/master/LICENSE

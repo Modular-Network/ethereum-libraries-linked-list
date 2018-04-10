@@ -82,7 +82,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ### How to install
 
-`npm install ethereum-libraries-basic-math`
+`npm install ethereum-libraries-linked-list`
 
 #### How to link
 
